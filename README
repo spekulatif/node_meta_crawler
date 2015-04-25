@@ -1,0 +1,3 @@
+installing dependencies and start server
+----------------------------------------
+npm install && node app.js
