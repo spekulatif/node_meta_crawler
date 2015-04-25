@@ -1,0 +1,17 @@
+doctype html
+
+html
+ head
+   meta(charset='utf-8')
+   link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Roboto")
+   link(rel='stylesheet', href='/stylesheets/style.css')
+   title Result
+ body
+   each val, key in metaTags
+     if val
+       if key == 'fbImage'
+         h3 FACEBOOK IMAGE
+         img(src=val)
+       else
+         h3 #{key.toUpperCase()}
+         p #{val}

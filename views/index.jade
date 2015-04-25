@@ -1,5 +1,19 @@
-extends layout
+doctype html
 
-block content
-  h1= title
-  p Welcome to #{title}
+html
+ head
+   meta(charset='utf-8')
+   link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Roboto")
+   link(rel='stylesheet', href='/stylesheets/style.css')
+   title Parse meta-data of any url
+ body
+   #contact
+     h1 Parse meta-data of any url
+     |     
+     if error
+       p #{error}
+     form(action='/', method='post')
+       label(for='url')
+       input#url(type='text', name='url', placeholder='Enter url')
+       |             
+       input#btnSend(type='submit', value='Parse')
