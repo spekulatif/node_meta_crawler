@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var http = require("http");
 
 var routes = require('./routes/index');
 
@@ -53,6 +54,11 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+//self ping to keep awake for heroku 
+setInterval(function() {
+    http.get("http://aa-crawler.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
 
 app.listen(3000);
 
