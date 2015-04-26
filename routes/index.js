@@ -1,8 +1,8 @@
-var express = require('express'),
-   router  = express.Router(),
-   request = require('request'),
-   cheerio = require('cheerio'),
-   URL     = require('url');
+var express = require('express');
+var router  = express.Router();
+var request = require('request');
+var cheerio = require('cheerio');
+var URL     = require('url');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,15 +10,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res) {
- var url = putFormatToUrl(req.body.url);
-
- request.get({uri: url}, function(error, response, body) {
-   if (!error && response.statusCode === 200) {
-     res.render('result', { metaTags: getMetaTags(body) });
-   } else {
-     res.render('index', { error: 'Sorry! Could not parse your url, Please check your url.' })
-   }
- });
+  var url = putFormatToUrl(req.body.url);
+  request.get({uri: url}, function(error, response, body) {
+    if (error || response.statusCode !== 200)
+      return res.render('index', { error: 'Sorry! Could not parse your url, Please check your url.' });
+    res.render('result', { metaTags: getMetaTags(body) });
+  });
 });
 
 function putFormatToUrl (url) {
